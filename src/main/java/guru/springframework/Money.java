@@ -1,8 +1,8 @@
 package guru.springframework;
 
 public class Money implements Expression {
-    protected int amount;
-    protected String currency;
+    protected final int amount;
+    protected final String currency;
 
     public Money(int amount, String currency) {
         this.amount = amount;
@@ -25,7 +25,7 @@ public class Money implements Expression {
     public boolean equals(Object object) {
         Money money = (Money) object;
         return amount == money.amount
-                && this.currency == money.currency;
+                && this.currency.equals(money.currency);
     }
 
     @Override
@@ -49,16 +49,4 @@ public class Money implements Expression {
         return new Sum(this, addend);
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Money money = (Money) o;
-//        return amount == money.amount;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(amount);
-//    }
 }
